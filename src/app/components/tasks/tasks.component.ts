@@ -20,6 +20,7 @@ export class TasksComponent implements OnInit {
     this.taskService
       .deleteTask(task)
       .subscribe(
+        // t = all tasks, task = the task that was deleted
         () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
       );
   }

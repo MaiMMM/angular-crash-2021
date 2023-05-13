@@ -17,12 +17,17 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
+  // reasons to use observables:
+  // 1. async requests
+  // 2. mitiage HTTP requests every time user refreshes the page
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl);
   }
 
   deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
+    // backticks are template literals
+    //this url = http://localhost:5000/tasks/ + task.id
+    const url = `${this.apiUrl}/${task.id}`; 
     return this.http.delete<Task>(url);
   }
 
